@@ -47,3 +47,7 @@ S(a, b) = T(a) + T(a + b) - T(b - 1)
   => a = a - 2, b = b + 2
 3. a = 0, b = 8  
   => 23 = 1 * 23
+
+## Working example 
+- doc_example_run.js
+- https://www.jdoodle.com/ia/1IBA
