@@ -22,7 +22,7 @@ S(a, b) = T(a) + T(a + b) - T(b - 1)
 
 ## Exit
 1. if C = S(a, b) => C = (a + 1) * (a + b)
-2. if a = 2 => C is a prime number
+2. if a = 0 => C is a prime number
 
 ## Example
 
