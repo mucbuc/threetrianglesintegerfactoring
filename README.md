@@ -18,7 +18,7 @@ S(a, b) = T(a) + T(a + b) - T(b - 1)
 2. b = b + 2
 
 ### Increase sum if S(a, b) < C
-1. b = b + max(1, ceil(C - S(a, b)) / (a + 1))
+1. b = b + max(1, ceil((C - S(a, b)) / (a + 1)))
 
 ## Exit
 1. if C = S(a, b) => C = (a + 1) * (a + b)
