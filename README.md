@@ -6,26 +6,21 @@ Factor the composite number C = (a + 1) * (a + b) by finding the solution to C =
 T(n) generates the nth triangular number.
 
 ## Initialization
-
 1. a = floor( sqrt( C ) ) - 1
 2. if a is odd a = a - 1
 2. b = 1
 
 ## Iteration
-
 S(a, b) = T(a) + T(a + b) - T(b - 1)
 
-### Decrease sum
-1. if S(a, b) > C
-2. a = a - 2
-3. b = b + 2
+### Decrease sum if S(a, b) > C
+1. a = a - 2
+2. b = b + 2
 
-### Increase sum 
-1. if S(a, b) < C
-2. b = b + max(1, ceil(C - S(a, b)) / (a + 1))
+### Increase sum if S(a, b) < C
+1. b = b + max(1, ceil(C - S(a, b)) / (a + 1))
 
 ## Exit
-
 1. if C = S(a, b) => C = (a + 1) * (a + b)
 2. if a == 2 => C is a prime number
 
