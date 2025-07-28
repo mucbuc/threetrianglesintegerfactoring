@@ -1,11 +1,20 @@
 <html>
+<head>
+	 <meta charset="UTF-8">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <body>
 <header>
 <h1> Three Triangles Integer Factorization Algorithm </h1>
 </header>
 
+<blockquote>
+    <p>"Discovery consists of seeing what everybody has seen and thinking what nobody has thought."</p>
+    <footer>— Albert Szent-Györgyi</footer>
+</blockquote>
+
 <h2>Abstract:</h2>
-Factor the composite number <em>C=(a+1)(a+b)</em> by finding the solution to <em>C=T(a)+T(a+b)-T(b-1)</em> where <em>T(n)</em> generates the nth triangular number.
+Factor the composite number <em>C=(a+1)(a+b)</em> by finding the solution to <em>C=T(a)+T(a+b)-T(b-1)</em> where <em>T(n)</em> is the nth triangular number.
 
 <h2>Definitions:</h2>
 	<ul>
@@ -62,9 +71,9 @@ For every natural number <em>a, b > 0</em> it holds that <em>S(a, b) < S(a, b+ma
 	<ol>
 		<li> let a = make_even( floor( sqrt( C ) ) - 1 )</li>
 		<li> let b = 1</li>
-		<li> if <em>S(a, b) > C</em> then <em>a = a - 2, b = b + 2</em></li>
-		<li> if <em>S(a, b) < C</em> then <em>b = b + max(1, ceil((C - S(a, b)) / (a + 1)))</em></li>
-		<li> if <em>S(a, b) == C</em> then exit: found factors <em>(a + 1)</em> and <em>(a + b)</em>
+		<li> if <em>S(a, b) > C</em> then <em>a=a-2, b=b+2</em></li>
+		<li> if <em>S(a, b) < C</em> then <em>b=b+max(1, ceil((C-S(a, b))/(a+1)))</em></li>
+		<li> if <em>S(a, b) == C</em> then exit: found factors <em>(a+1)</em> and <em>(a+b)</em>
 		<li> if <em>a == 0</em> then exit: <em>C</em> is a prime number
 		<li> goto step 3.</li>
 	</ol>
