@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+echo threetriangles.pdf | entr -n open /_ 

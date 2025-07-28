@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+echo in.html | entr -n ./make_pdf 
