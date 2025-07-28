@@ -1,62 +1,61 @@
 <html>
-<head>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 <body>
 <header>
-<b>Category: math.NT</b>
-<hr>
-<br>
 <h1> Three Triangles Integer Factorization Algorithm </h1>
 </header>
 
-This is my discovery of an algorithm for integer factorization. To my knowledge it is not based on any existing solutions. I do not claim it to be efficient or useful, I'm only concerned with its correctness and completeness. 
+<h2>Abstract:</h2>
+Factor the composite number <em>C=(a+1)(a+b)</em> by finding the solution to <em>C=T(a)+T(a+b)-T(b-1)</em> where <em>T(n)</em> generates the nth triangular number.
 
-<h2>Abstract</h2>
-Factor the composite number <em>C=(a+1)*(a+b)</em> by finding the solution to <em>C=T(a)+T(a+b)-T(b-1)</em> where <em>T(n)</em> generates the nth triangular number.
-
-<h2>Definitions</h2>
+<h2>Definitions:</h2>
 	<ul>
-		<li><b>a, b := natural numbers
-		<li><b>T(n)</b> := n*(n+1)/2</li>
-		<li><b>S(a, b)</b> := T(a)+T(a+b)-T(b-1)</li>
-		<li><b>make_even(n)</b> := if n is odd return n-1 else return n</li>
+		<li>a, b := natural numbers
+		<li>T(n)</b> := n(n+1)/2</li>
+		<li>S(a, b)</b> := T(a)+T(a+b)-T(b-1)</li>
+		<li>make_even(n)</b> := if n is odd return n-1 else return n</li>
 	</ul>
 
-<h2>Proof of <em>(a+1)*(a+b)=T(a)+T(a+b)-T(b-1)</em></h2>
+<h2>Theorem:</h2>
+For every composite number <em>C=(a+1)(a+b)</em> there exist three triangular numbers such that <em>C=T(a)+T(a+b)-T(b-1)</em>.
+
+<h2>Proof:</h2>
 <ol>
-<li><em>(a+1)*(a+b)=T(a)+T(a+b)-T(b-1)</em></li>
-<li><em>a*a+a*b+a+b=a*(a+1)/2+(a+b)*(a+b+1)/2-(b-1)*b/2</em></li>
-<li><em>2*a*a+2*a*b+2*a+2*b=a*(a+1)+(a+b)*(a+b+1)-(b-1)*b</em></li>
-<li><em>2*a*a+2*a*b+2*a+2*b=a*a+a+a*(a+b+1)+b*(a+b+1)-b*b+b</em></li>
-<li><em>2*a*a+2*a*b+2*a+2*b=a*a+a+a*a+a*b+a+b*a+b*b+b-b*b+b</em></li>
-<li><em>2*a*a+2*a*b+2*a+2*b=2*a*a+2*a*b+2*a+2*b</em></li>
+<li><em>(a+1)(a+b)=T(a)+T(a+b)-T(b-1)</em></li>
+<li><em>a<sup>2</sup>+ab+a+b=a(a+1)/2+(a+b)(a+b+1)/2-(b-1)b/2</em></li>
+<li><em>2a<sup>2</sup>+2ab+2a+2b=a(a+1)+(a+b)(a+b+1)-(b-1)b</em></li>
+<li><em>2a<sup>2</sup>+2ab+2a+2b=a<sup>2</sup>+a+a(a+b+1)+b(a+b+1)-b<sup>2</sup>+b</em></li>
+<li><em>2a<sup>2</sup>+2ab+2a+2b=a<sup>2</sup>+a+a<sup>2</sup>+ab+a+ba+b<sup>2</sup>+b-b<sup>2</sup>+b</em></li>
+<li><em>2a<sup>2</sup>+2ab+2a+2b=2a<sup>2</sup>+2ab+2a+2b</em></li>
 <li><em>0=0</em></li>
 </ol>
 
-<h2>Proof that <em>S(a, b) > S(a-2, b+2)</em></h2>
-This is required to show that the algorithm makes progress on step 3. 
+<h2>Theorem:</h2>
+For every natural number <em>a >= 2</em> and <em>b > 1</em> it holds that <em>S(a, b) > S(a-2, b+2)</em>.
+
+<h2>Proof:</h2>
 <ol>
 <li><em>S(a, b) > S(a-2, b+2)</em></li>
-<li><em>(a+1)*(a+b) > (a+1-2)*(a+b-2+2)</em></li>
-<li><em>a*a+a+b > (a-1)*(a+b)</em></li>
-<li><em>a*a+a+b > a*a-(a+b)</em></li>
+<li><em>(a+1)(a+b) > (a+1-2)(a-2+b+2)</em></li>
+<li><em>a<sup>2</sup>+a+b > (a-1)(a+b)</em></li>
+<li><em>a<sup>2</sup>+a+b > a<sup>2</sup>-(a+b)</em></li>
 <li><em>a+b > -(a+b)</em></li>
-<li><em>1*(a+b) > -1*(a+b)</em></li>
-<li>Since a, b > 0 => <em>1 > -1</em></li>
+<li><em>1 > -1</em>(<em>a+b</em> > 0 since <em>a >= 2</em> and <em>b > 1</em>)</li>
 </ol>
 
-<h2>Proof that <em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em></h2>
-This is required to show that the algorithm makes progress on step 4. 
+
+<h2>Theorem:</h2>
+For every natural number <em>a, b > 0</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em>.
+
+<h2>Proof:</h2>
 <ol>
 <li><em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em></li>
-<li><em>(a+1)*(a+b) < (a+1)*(a+b+max(1, ceil((C-S(a, b))/(a+1))))</em></li>
+<li><em>(a+1)(a+b) < (a+1)(a+b+max(1, ceil((C-S(a, b))/(a+1))))</em></li>
 <li><em>a+b < a+b+max(1, ceil((C-S(a, b))/(a+1)))</em></li>
 <li><em>0 < max(1, ceil((C - S(a, b))/(a+1)))</em></li>
 <li><em>0 < 1</em></li>
 </ol>
 
-<h2>Algorithm</h2>
+<h2>Algorithm:</h2>
 	<em>input:</em> C => integer greater than 2 
 	<br>
 	<em>output:</em> found factors, or 1 and C if C is a prime number
@@ -113,6 +112,6 @@ This is required to show that the algorithm makes progress on step 4.
 </li>
 </ol>
 <h3>Conclusion</h3>
-Instead of focusing on performance of factorization this algorithm tries to explore a new solution. One potential benefit I see is the reduced magnitude of dividends used in divisions. Hope it inspires some ideas.   
+To my knowledge this is not based on any existing solutions. I do not claim it to be efficient or useful, I'm only concerned with its correctness and completeness. One potential benefit I see is the reduced magnitude of dividends used in divisions. Hope it inspires some ideas.   
 </body>
 </html>
