@@ -18,7 +18,7 @@ function factor(semiprime)
 
     function sum(a, b)
     {
-        assert(a > 1);
+        assert(a >= 1);
         assert(b >= 1);
 
         return triangle(a) + triangle(a + b) - triangle(b - 1);
@@ -26,14 +26,10 @@ function factor(semiprime)
 
     assert(semiprime > 0);
 
-    if (semiprime % 2 == 0) {
-        return [ semiprime / 2, 2 ];
-    }
-
-    let a = ((Math.floor(Math.sqrt(semiprime)) - 1) & ~1);
+    let a = Math.floor(Math.sqrt(semiprime)) & ~1;
     let b = 1;
     let index = 0;
-    while (a > 1) {
+    while (a >= 1) {
 
         let s = sum(a, b);
         ++index;
@@ -46,14 +42,14 @@ function factor(semiprime)
 
         if (s > semiprime) {
             if (html) {
-                console.log(`<b>=></b> a = a - 2, b = b + 2</li>`);
+                console.log(`<b>=></b> a = a - 1, b = b + 1</li>`);
             }
             else {
-                console.log(`  => a = a - 2, b = b + 2`);
+                console.log(`  => a = a - 1, b = b + 1`);
             }
 
-            a -= 2;
-            b += 2;
+            --a;
+            ++b;
             continue;
         }
 
