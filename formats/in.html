@@ -80,46 +80,38 @@ For every natural number <em>a, b > 0</em> it holds that <em>S(a, b) < S(a, b+ma
 <h2> Examples </h2>
 <h3>Factor 51</h3>
 <ol> 
-<li> a = 6, b = 1 
-	<br> S(6, 1) = 49
-	<br> => b = b + max(1, ceil(2 / 7)) 
-</li>
-<li> a = 6, b = 2 
-	<br> S(6, 2) = 56 
-	<br> => a = a - 2, b = b + 2 
-</li>
-<li> a = 4, b = 4
-	<br> S(4, 4) = 40 
-	<br> => b = b + max(1, ceil(11 / 5)) 
-</li>
-<li> a = 4, b = 7
-	<br> S(4, 7) = 55 
-	<br> => a = a - 2, b = b + 2 
-</li>
-<li> a = 2, b = 9
-	<br> S(2, 9) = 33 
-	<br> => b = b + max(1, ceil(18 / 3)) 
-</li>
-<li> a = 2, b = 15
-	<br> S(2, 15) = 51
-	<br> => 51 = 3 * 17 
-</li>
+<li> S(6, 1) = 49
+  <b>=></b> b = b + max(1, ceil(2 / 7))</li>
+<li> S(6, 2) = 56
+<b>=></b> a = a - 2, b = b + 2</li>
+<li> S(4, 4) = 40
+  <b>=></b> b = b + max(1, ceil(11 / 5))</li>
+<li> S(4, 7) = 55
+<b>=></b> a = a - 2, b = b + 2</li>
+<li> S(2, 9) = 33
+  <b>=></b> b = b + max(1, ceil(18 / 3))</li>
+<li> S(2, 15) = 51
+  <b>=></b> 51 = 3 * 17</li>
 </ol>
 
 <h3>Factor 23</h3>
 <ol>
-<li> a = 2, b = 1
-	<br> S(2, 1) = 9 
-	<br> => b = b + max(1, ceil(14 / 3)) 
-</li>
-<li> a = 2, b = 6
-	<br> S(2, 6) = 24 
-	<br> => a = a - 2, b = b + 2 
-</li>
-<li> a = 0, b = 8 
-	 <br> => 23 = 1 * 23 
-</li>
+<li> S(2, 1) = 9
+  <b>=></b> b = b + max(1, ceil(14 / 3))</li>
+<li> S(2, 6) = 24
+<b>=></b> a = a - 2, b = b + 2</li>
+<li> a = 0, b = 8
+  <b>=></b> 23 = 1 * 23</li>
 </ol>
+
+<h3>factor 221</h3>
+<ol>
+<li> S(12, 1) = 169
+  <b>=></b> b = b + max(1, ceil(52 / 13))</li>
+<li> S(12, 5) = 221
+  <b>=></b> 221 = 13 * 17</li>
+</ol>
+
 <h3>Conclusion</h3>
 To my knowledge this is not based on any existing solutions. I do not claim it to be efficient or useful, I'm only concerned with its correctness and completeness. One potential benefit I see is the reduced magnitude of dividends used in divisions. Hope it inspires some ideas.   
 </body>
