@@ -41,23 +41,34 @@ function factor(semiprime)
         }
 
         if (s > semiprime) {
+            if (b != 1 && a % b == 0) {
+                return [ b, semiprime / b ];
+            }
+            let diff = s - semiprime;
+            if (diff != a * 2 + b) {
+                ++b;
+            }
+            --a;
+
             if (html) {
                 console.log(`<b>=></b> a = a - 1, b = b + 1</li>`);
             }
             else {
                 console.log(`  => a = a - 1, b = b + 1`);
             }
-
-            if (s - semiprime != a * 2 + b) {
-                ++b;
-            }
-            --a;
             continue;
         }
 
         if (s < semiprime) {
+
+            let diff = semiprime - s;
+
+            if ((a + 1) % diff == 0) {
+                return [ diff, semiprime / diff ];
+            }
+
             if (html) {
-                console.log(`  <b>=></b> b = b + max(1, ceil(${semiprime - s} / ${a + 1}))</li>`);
+                console.log(`  <b>=></b> b = b + max(1, ceil(${diff} / ${a + 1}))</li>`);
             }
             else {
                 console.log(`  => b = b + max(1, ceil(${semiprime - s} / ${a + 1}))  `);
