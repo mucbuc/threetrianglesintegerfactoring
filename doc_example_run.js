@@ -48,8 +48,10 @@ function factor(semiprime)
                 console.log(`  => a = a - 1, b = b + 1`);
             }
 
+            if (s - semiprime != a * 2 + b) {
+                ++b;
+            }
             --a;
-            ++b;
             continue;
         }
 
