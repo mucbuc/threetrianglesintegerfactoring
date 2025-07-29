@@ -14,7 +14,10 @@ function run_tests()
 {
     for (let i = 3; i < 1000000; ++i) {
         const d = factor(i); 
-        console.log( `${i} = ${d[0]} * ${d[1]}`);
+        assert(d[0] * d[1] == i);
+        let ideal = Math.sqrt(i);
+        ideal = ideal / Math.log(ideal);
+        console.log( `${d[2]/ideal} ${i} = ${d[0]} * ${d[1]}`);
     }
 }
 
@@ -43,7 +46,7 @@ function factor(semiprime)
     while (a >= 1) {
 
         let s = sum(a, b);
-        // ++index;
+        ++index;
         // if (html) {
         //     console.log(`<li> S(${a}, ${b}) = ${s}`);
         // } 
@@ -54,7 +57,7 @@ function factor(semiprime)
         if (s > semiprime) {
             let diff = s - semiprime;
             if (diff != 1 && diff % (a + 1) == 0) {
-                return [ a + 1, semiprime / (a + 1) ];
+                return [ a + 1, semiprime / (a + 1), index ];
             }
 
             if (diff != a * 2 + b) {
@@ -76,7 +79,7 @@ function factor(semiprime)
             let diff = semiprime - s;
 
             if (diff != 1 && (a + 1) % diff == 0) {
-                return [ diff, semiprime / diff ];
+                return [ diff, semiprime / diff, index ];
             }
 
             // if (html) {
@@ -86,7 +89,7 @@ function factor(semiprime)
             //     console.log(`  => b = b + max(1, ceil(${semiprime - s} / ${a + 1}))  `);
             // }
 
-            let d = Math.max(1, Math.ceil((semiprime - s) / (a + 1)));
+            let d = Math.max(1, Math.ceil(diff / (a + 1)));
             b += d;
             continue;
         }
@@ -99,8 +102,12 @@ function factor(semiprime)
             //     console.log(`  => ${semiprime} = ${a + 1} * ${a + b}  `);
             // }
 
-            return [ a + 1, a + b ];
+            return [ a + 1, a + b, index ];
         }
+
+        // if (b > a) {
+        //     break;
+        // }
     }
 
     // if (html) {
@@ -113,5 +120,5 @@ function factor(semiprime)
     // }
     
 
-    return [ 1, semiprime ];
+    return [ 1, semiprime, index ];
 }
