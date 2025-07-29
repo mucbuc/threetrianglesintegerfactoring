@@ -83,7 +83,7 @@ function factor(semiprime)
     }
 
     if (html) {
-        console.log(`<li> a = ${a}, b = ${b}`);
+        console.log(`<li> a = ${a}`);
         console.log(`  <b>=></b> ${semiprime} = 1 * ${semiprime}</li>`);
     }
     else {
