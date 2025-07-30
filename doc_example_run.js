@@ -63,19 +63,24 @@ function factor(semiprime)
     let b = 1;
     let index = 0;
     while (a >= 1) {
-        ++index;
+        //++index;
 
-        if (b != 1 && semiprime % b == 0) {
-            return [ b, semiprime / b, index, 'fifth case' ];
-        }
-        ++index;
+        // if (b != 1 && semiprime % b == 0) {
+        //     return [ b, semiprime / b, index, 'fifth case' ];
+        // }
+        // ++index;
 
         let s = sum(a, b);
+        
+        console.log( `<li>S(${a}, ${b}) = ${s}` );
+
         if (s > semiprime) {
-            let diff = s - semiprime;
-            if (diff != 1 && diff % (a + 1) == 0) {
-                return [ a + 1, semiprime / (a + 1), index, 'first case' ];
-            }
+            // let diff = s - semiprime;
+            // if (diff != 1 && diff % (a + 1) == 0) {
+            //     return [ a + 1, semiprime / (a + 1), index, 'first case' ];
+            // }
+
+            console.log( ` => a = a - 1, b = b + 1</li>` );
 
             ++b;
             --a;
@@ -83,22 +88,29 @@ function factor(semiprime)
         }
 
         if (s < semiprime) {
-
             let diff = semiprime - s;
+            // if (diff != 1 && (a + 1) % diff == 0) {
+            //     return [ diff, semiprime / diff, index, 'second case' ];
+            // }
 
-            if (diff != 1 && (a + 1) % diff == 0) {
-                return [ diff, semiprime / diff, index, 'second case' ];
-            }
-            
             let d = Math.max(1, Math.ceil(diff / (a + 1)));
+            
+            console.log( ` => b = b + ${d}</li>` );
+
             assert(d > 0);
             b += d;
             continue;
         }
 
         if (s == semiprime) {
+
+            console.log( ` => ${semiprime} = ${a + 1} * ${a + b}</li>` );
+
             return [ a + 1, a + b, index, 'third case' ];
         }
     }
+
+    console.log( `<li>a = 0 => ${semiprime} = 1 * ${semiprime}</li>` );
+
     return [ 1, semiprime, index, 'fourth case' ];
 }
