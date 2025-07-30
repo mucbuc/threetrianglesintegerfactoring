@@ -59,7 +59,7 @@ function factor(semiprime)
 
     assert(semiprime > 0);
 
-    let a = Math.floor(Math.sqrt(semiprime)) & ~1;
+    let a = Math.floor(Math.sqrt(semiprime)) - 1;
     let b = 1;
     let index = 0;
     while (a >= 1) {

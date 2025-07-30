@@ -18,10 +18,8 @@ Factor the composite number <em>C=(a+1)(a+b)</em> by finding the solution to <em
 
 <h2>Definitions:</h2>
 	<ul>
-		<li>a, b := natural numbers
 		<li>T(n)</b> := n(n+1)/2</li>
 		<li>S(a, b)</b> := T(a)+T(a+b)-T(b-1)</li>
-		<li>make_even(n)</b> := if n is odd return n-1 else return n</li>
 	</ul>
 
 <h2>Theorem:</h2>
@@ -66,7 +64,7 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
 	<br>
 	<em>output:</em> found factors, or 1 and C if C is a prime number
 	<ol>
-		<li> let a = make_even( floor( sqrt( C ) ) )</li>
+		<li> let a = floor( sqrt( C ) ) - 1</li>
 		<li> let b = 1</li>
 		<li> if <em>S(a, b) > C</em> then <em>a=a-1, b=b+1</em></li>
 		<li> if <em>S(a, b) < C</em> then <em>b=b+max(1, ceil((C-S(a, b))/(a+1)))</em></li>
@@ -77,34 +75,40 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
 <h2> Examples </h2>
 <h3>Factor 51</h3>
 <ol> 
-<li> S(6, 1) = 49
-  <b>=></b> b = b + max(1, ceil(2 / 7))</li>
-<li> S(6, 2) = 56
-<b>=></b> a = a - 2, b = b + 2</li>
-<li> S(4, 4) = 40
-  <b>=></b> b = b + max(1, ceil(11 / 5))</li>
-<li> S(4, 7) = 55
-<b>=></b> a = a - 2, b = b + 2</li>
-<li> S(2, 9) = 33
-  <b>=></b> b = b + max(1, ceil(18 / 3))</li>
-<li> S(2, 15) = 51
-  <b>=></b> 51 = 3 * 17</li>
+<li>S(6, 1) = 49
+ => b = b + max(1, ceil(2/7))</li>
+<li>S(6, 2) = 56
+ => a = a - 1, b = b + 1</li>
+<li>S(5, 3) = 48
+ => b = b + max(1, ceil(3/6))</li>
+<li>S(5, 4) = 54
+ => a = a - 1, b = b + 1</li>
+<li>S(4, 5) = 45
+ => b = b + max(1, ceil(6/5))</li>
+<li>S(4, 7) = 55
+ => a = a - 1, b = b + 1</li>
+<li>S(3, 8) = 44
+ => b = b + max(1, ceil(7/4))</li>
+<li>S(3, 10) = 52
+ => a = a - 1, b = b + 1</li>
+<li>S(2, 11) = 39
+ => b = b + max(1, ceil(12/3))</li>
+<li>S(2, 15) = 51
+ => 51 = 3 * 17</li>
 </ol>
 
 <h3>Factor 23</h3>
 <ol>
-<li>S(4, 1) = 25
- => a = a - 1, b = b + 1</li>
-<li>S(3, 2) = 20
- => b = b + 1</li>
+<li>S(3, 1) = 16
+ => b = b + max(1, ceil(7/4))</li>
 <li>S(3, 3) = 24
  => a = a - 1, b = b + 1</li>
 <li>S(2, 4) = 18
- => b = b + 2</li>
+ => b = b + max(1, ceil(5/3))</li>
 <li>S(2, 6) = 24
  => a = a - 1, b = b + 1</li>
 <li>S(1, 7) = 16
- => b = b + 4</li>
+ => b = b + max(1, ceil(7/2))</li>
 <li>S(1, 11) = 24
  => a = a - 1, b = b + 1</li>
 <li>a = 0 => 23 = 1 * 23</li>
@@ -112,42 +116,20 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
 
 <h3>factor 221</h3>
 <ol>
-<li>S(6, 1) = 49
- => b = b + 1</li>
-<li>S(6, 2) = 56
+<li>S(13, 1) = 196
+ => b = b + max(1, ceil(25/14))</li>
+<li>S(13, 3) = 224
  => a = a - 1, b = b + 1</li>
-<li>S(5, 3) = 48
- => b = b + 1</li>
-<li>S(5, 4) = 54
- => a = a - 1, b = b + 1</li>
-<li>S(4, 5) = 45
- => b = b + 2</li>
-<li>S(4, 7) = 55
- => a = a - 1, b = b + 1</li>
-<li>S(3, 8) = 44
- => b = b + 2</li>
-<li>S(3, 10) = 52
- => a = a - 1, b = b + 1</li>
-<li>S(2, 11) = 39
- => b = b + 4</li>
-<li>S(2, 15) = 51
- => 51 = 3 * 17</li>
+<li>S(12, 4) = 208
+ => b = b + max(1, ceil(13/13))</li>
+<li>S(12, 5) = 221
+ => 221 = 13 * 17</li>
 </ol>
 
 <h3>factor 36</h3>
 <ol>
-<li>S(6, 1) = 49
- => a = a - 1, b = b + 1</li>
-<li>S(5, 2) = 42
- => a = a - 1, b = b + 1</li>
-<li>S(4, 3) = 35
- => b = b + 1</li>
-<li>S(4, 4) = 40
- => a = a - 1, b = b + 1</li>
-<li>S(3, 5) = 32
- => b = b + 1</li>
-<li>S(3, 6) = 36
- => 36 = 4 * 9</li>
+<li>S(5, 1) = 36
+ => 36 = 6 * 6</li>
 </ol>
 
 <h3>Conclusion</h3>
