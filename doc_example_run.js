@@ -95,7 +95,7 @@ function factor(semiprime)
 
             let d = Math.max(1, Math.ceil(diff / (a + 1)));
             
-            console.log( ` => b = b + ${d}</li>` );
+            console.log( ` => b = b + max(1, ceil(${diff}/${a + 1}))</li>` );
 
             assert(d > 0);
             b += d;
