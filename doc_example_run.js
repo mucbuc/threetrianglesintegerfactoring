@@ -12,13 +12,32 @@ else {
 
 function run_tests()
 {
-    for (let i = 3; i < 1000000; ++i) {
+
+    let counter = 1;
+    let current_average = 0;
+
+    function add_value(v)
+    {
+        current_average += (v - current_average) / counter;
+        ++counter;
+    }
+
+    for (let i = 3; i < 100000000; ++i) {
         const d = factor(i); 
         assert(d[0] * d[1] == i);
         let ideal = Math.sqrt(i);
         ideal = ideal / Math.log(ideal);
-        console.log( `${d[2]/ideal} ${i} = ${d[0]} * ${d[1]}`);
+            
+        add_value(d[2]/ideal);
+
+        if (!(i % 100000)) {
+            console.log(current_average);
+        }
+
+        //console.log( `${d[2]/ideal} ${i} = ${d[0]} * ${d[1]} \t${d[3]}`);
     }
+
+    console.log(current_average);
 }
 
 function factor(semiprime)
@@ -44,33 +63,22 @@ function factor(semiprime)
     let b = 1;
     let index = 0;
     while (a >= 1) {
+        ++index;
+
+        if (b != 1 && semiprime % b == 0) {
+            return [ b, semiprime / b, index, 'fifth case' ];
+        }
+        ++index;
 
         let s = sum(a, b);
-        ++index;
-        // if (html) {
-        //     console.log(`<li> S(${a}, ${b}) = ${s}`);
-        // } 
-        // else {
-        //     console.log(`${index}. S(${a}, ${b}) = ${s}  `);
-        // }
-
         if (s > semiprime) {
             let diff = s - semiprime;
             if (diff != 1 && diff % (a + 1) == 0) {
-                return [ a + 1, semiprime / (a + 1), index ];
+                return [ a + 1, semiprime / (a + 1), index, 'first case' ];
             }
 
-            if (diff != a * 2 + b) {
-                ++b;
-            }
+            ++b;
             --a;
-
-            // if (html) {
-            //     console.log(`<b>=></b> a = a - 1, b = b + 1</li>`);
-            // }
-            // else {
-            //     console.log(`  => a = a - 1, b = b + 1`);
-            // }
             continue;
         }
 
@@ -79,46 +87,23 @@ function factor(semiprime)
             let diff = semiprime - s;
 
             if (diff != 1 && (a + 1) % diff == 0) {
-                return [ diff, semiprime / diff, index ];
+                return [ diff, semiprime / diff, index, 'second case' ];
             }
-
-            // if (html) {
-            //     console.log(`  <b>=></b> b = b + max(1, ceil(${diff} / ${a + 1}))</li>`);
-            // }
-            // else {
-            //     console.log(`  => b = b + max(1, ceil(${semiprime - s} / ${a + 1}))  `);
-            // }
-
-            let d = Math.max(1, Math.ceil(diff / (a + 1)));
-            b += d;
+            
+            if (diff < (a + 1)) {
+                ++b;
+            }
+            else {
+                let d = Math.ceil(diff / (a + 1));
+                assert(d > 0);
+                b += d;
+            }
             continue;
         }
 
         if (s == semiprime) {
-            // if (html) {
-            //     console.log(`  <b>=></b> ${semiprime} = ${a + 1} * ${a + b}</li>`);
-            // }
-            // else {
-            //     console.log(`  => ${semiprime} = ${a + 1} * ${a + b}  `);
-            // }
-
-            return [ a + 1, a + b, index ];
+            return [ a + 1, a + b, index, 'third case' ];
         }
-
-        // if (b > a) {
-        //     break;
-        // }
     }
-
-    // if (html) {
-    //     console.log(`<li> a = ${a}`);
-    //     console.log(`  <b>=></b> ${semiprime} = 1 * ${semiprime}</li>`);
-    // }
-    // else {
-    //     console.log(`${index + 1}. a = ${a}, b = ${b}  `);
-    //     console.log(`  => ${semiprime} = 1 * ${semiprime}`);
-    // }
-    
-
-    return [ 1, semiprime, index ];
+    return [ 1, semiprime, index, 'fourth case' ];
 }
