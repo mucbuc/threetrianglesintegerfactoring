@@ -22,7 +22,7 @@ function run_tests()
         ++counter;
     }
 
-    for (let i = 3; i < 100000000; ++i) {
+    for (let i = 3; i < 1000000000; ++i) {
         const d = factor(i); 
         assert(d[0] * d[1] == i);
         let ideal = Math.sqrt(i);
@@ -90,14 +90,9 @@ function factor(semiprime)
                 return [ diff, semiprime / diff, index, 'second case' ];
             }
             
-            if (diff < (a + 1)) {
-                ++b;
-            }
-            else {
-                let d = Math.ceil(diff / (a + 1));
-                assert(d > 0);
-                b += d;
-            }
+            let d = Math.max(1, Math.ceil(diff / (a + 1)));
+            assert(d > 0);
+            b += d;
             continue;
         }
 

@@ -39,21 +39,18 @@ For every composite number <em>C=(a+1)(a+b)</em> there exist three triangular nu
 </ol>
 
 <h2>Theorem:</h2>
-For every natural number <em>a >= 2</em> and <em>b > 1</em> it holds that <em>S(a, b) > S(a-2, b+2)</em>.
+For natural numbers <em>a, b</em> it holds that <em>S(a, b) > S(a-1, b+1)</em>.
 
 <h2>Proof:</h2>
 <ol>
-<li><em>S(a, b) > S(a-2, b+2)</em></li>
-<li><em>(a+1)(a+b) > (a+1-2)(a-2+b+2)</em></li>
-<li><em>a<sup>2</sup>+a+b > (a-1)(a+b)</em></li>
-<li><em>a<sup>2</sup>+a+b > a<sup>2</sup>-(a+b)</em></li>
-<li><em>a+b > -(a+b)</em></li>
-<li><em>1 > -1</em>(<em>a+b</em> > 0 since <em>a >= 2</em> and <em>b > 1</em>)</li>
+<li><em>S(a, b) > S(a-1, b+1)</em></li>
+<li><em>(a+1)(a+b) > (a+1-1)(a-1+b+1)</em></li>
+<li><em>a(a+b)+a+b > a(a+b)</em></li>
+<li><em>a+b > 0</em></li>
 </ol>
 
-
 <h2>Theorem:</h2>
-For every natural number <em>a, b > 0</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em>.
+For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em>.
 
 <h2>Proof:</h2>
 <ol>
@@ -65,7 +62,7 @@ For every natural number <em>a, b > 0</em> it holds that <em>S(a, b) < S(a, b+ma
 </ol>
 
 <h2>Algorithm:</h2>
-	<em>input:</em> C => integer greater than 4 
+	<em>input:</em> natural number C 
 	<br>
 	<em>output:</em> found factors, or 1 and C if C is a prime number
 	<ol>
