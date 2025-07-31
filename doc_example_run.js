@@ -18,7 +18,7 @@ function factor(semiprime)
 
     function sum(a, b)
     {
-        assert(a >= 1);
+        assert(a >= 0);
         assert(b >= 1);
 
         return triangle(a) + triangle(a + b) - triangle(b - 1);
@@ -28,7 +28,7 @@ function factor(semiprime)
 
     let a = Math.floor(Math.sqrt(semiprime)) - 1;
     let b = 1;
-    while (a >= 1) {
+    while (true) {
         let s = sum(a, b);
         if (s > semiprime) {
             ++b;

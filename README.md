@@ -6,7 +6,7 @@
 </blockquote>
 
 <h2>Abstract:</h2>
-Factor the composite number <em>C=(a+1)(a+b)</em> by finding the solution to <em>C=T(a)+T(a+b)-T(b-1)</em> where <em>T(n)</em> is the nth triangular number.
+Factor the natural number <em>C=(a+1)(a+b)</em> by finding the solution to <em>C=T(a)+T(a+b)-T(b-1)</em> where <em>T(n)</em> is the nth triangular number.
 
 <h2>Definitions:</h2>
    <ul>
@@ -15,7 +15,7 @@ Factor the composite number <em>C=(a+1)(a+b)</em> by finding the solution to <em
    </ul>
 
 <h2>Theorem:</h2>
-For every composite number <em>C=(a+1)(a+b)</em> there exist three triangular numbers such that <em>C=T(a)+T(a+b)-T(b-1)</em>.
+For every natural number <em>C=(a+1)(a+b)</em> there exist three triangular numbers such that <em>C=T(a)+T(a+b)-T(b-1)</em>.
 
 <h2>Proof:</h2>
 <ol>
@@ -29,7 +29,7 @@ For every composite number <em>C=(a+1)(a+b)</em> there exist three triangular nu
 </ol>
 
 <h2>Theorem:</h2>
-For natural numbers <em>a, b</em> it holds that <em>S(a, b) > S(a-1, b+1)</em>.
+For all natural numbers <em>a, b</em> it holds that <em>S(a, b) > S(a-1, b+1)</em>.
 
 <h2>Proof:</h2>
 <ol>
@@ -40,7 +40,7 @@ For natural numbers <em>a, b</em> it holds that <em>S(a, b) > S(a-1, b+1)</em>.
 </ol>
 
 <h2>Theorem:</h2>
-For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em>.
+For all natural numbers <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil((C-S(a, b))/(a+1))))</em>.
 
 <h2>Proof:</h2>
 <ol>
@@ -54,14 +54,13 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
 <h2>Algorithm:</h2>
    <em>input:</em> natural number C 
    <br>
-   <em>output:</em> found factors, or 1 and C if C is a prime number
+   <em>output:</em> found factors
    <ol>
       <li> let a = floor( sqrt( C ) ) - 1</li>
       <li> let b = 1</li>
       <li> if <em>S(a, b) > C</em> then <em>a=a-1, b=b+1</em></li>
       <li> else if <em>S(a, b) < C</em> then <em>b=b+max(1, ceil((C-S(a, b))/(a+1)))</em></li>
       <li> else if <em>S(a, b) = C</em> then exit: found factors <em>(a+1)</em> and <em>(a+b)</em>
-      <li> if <em>a = 0</em> then exit: <em>C</em> is a prime number
       <li> go to step 3</li>
    </ol>
 <h2> Examples </h2>
@@ -103,7 +102,10 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
  => b = b + max(1, ceil(7/2))</li>
 <li>S(1, 11) = 24
  => a = a - 1, b = b + 1</li>
-<li>a = 0 => 23 = 1 * 23</li>
+<li>S(0, 12) = 12
+ => b = b + max(1, ceil(11/1))</li>
+<li>S(0, 23) = 23
+ => 23 = 1 * 23</li>
 </ol>
 
 <h3>221</h3>
@@ -126,4 +128,3 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
 
 <h2>Conclusion</h2>
 To my knowledge this is not based on any existing solutions. I do not claim it to be efficient or useful, only correct and complete. Some optimizations have been omitted for simplicity. I hope it inspires more discovery.   
-
