@@ -124,6 +124,6 @@ For natural number <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, ceil(
  => 36 = 6 * 6</li>
 </ol>
 
-<h3>Conclusion</h3>
+<h2>Conclusion</h2>
 To my knowledge this is not based on any existing solutions. I do not claim it to be efficient or useful, only correct and complete. Some optimizations have been omitted for simplicity. I hope it inspires more discovery.   
 
