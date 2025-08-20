@@ -127,4 +127,4 @@ For all natural numbers <em>a, b</em> it holds that <em>S(a, b) < S(a, b+max(1, 
 </ol>
 
 <h2>Conclusion</h2>
-To my knowledge this is not based on any existing solutions. I do not claim it to be efficient or useful, only correct and complete. Some optimizations have been omitted for simplicity. I hope it inspires more discovery.   
+To my knowledge this is not based on any existing solutions. I do not claim it to be efficient or useful, only correct and complete. I hope it inspires more discovery.
